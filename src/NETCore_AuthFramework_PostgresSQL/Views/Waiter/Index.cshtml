@@ -156,11 +156,11 @@
                                 </td>
                                 <td ng-show="!isEditMode && !isEditAllMode">{{item.Qty}}</td>
                                 <td ng-show="(isEditMode && item.Status == 'Order')||(isEditAllMode)">
-                                    <button class="btn btn-primary btn-sm" ng-click="EditQtyMinus($index)">
+                                    <button class="btn btn-primary btn-xs" ng-click="EditQtyMinus($index)">
                                         <i class="glyphicon glyphicon-minus"></i>
                                     </button>
                                     <label style="padding-left:5px; padding-right:5px">{{item.Qty}}</label>
-                                    <button class="btn btn-primary btn-sm" ng-click="EditQtyPlus($index)">
+                                    <button class="btn btn-primary btn-xs" ng-click="EditQtyPlus($index)">
                                         <i class="glyphicon glyphicon-plus"></i>
                                     </button>
                                 </td>
@@ -168,7 +168,7 @@
                                 <td>{{item.Price}}</td>
                                 <td>{{item.Price*item.Qty}}</td>
                                 <td ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
-                                <td ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control" ng-model="item.Notes" /></td>
+                                <td ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
                                 <td ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
                                 <td>
                                     @if (User.IsInRole("Waiter"))

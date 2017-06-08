@@ -45,8 +45,8 @@
                                         <td>{{item.Qty}}</td>
                                         <td>{{item.MenuName}}</td>
                                         <td>
-                                            <button ng-if="data.Status == 'Order'" class="btn btn-primary" ng-click="CookOrderItem(item.OrderItemID)">Cook</button>
-                                            <button ng-if="data.Status == 'Cook'" class="btn btn-success" ng-click="FinishOrderItem(item.OrderItemID)">Done</button>
+                                            <button ng-if="data.Status == 'Order'" class="btn btn-primary btn-xs" ng-click="CookOrderItem(item.OrderItemID)">Cook</button>
+                                            <button ng-if="data.Status == 'Cook'" class="btn btn-success btn-xs" ng-click="FinishOrderItem(item.OrderItemID)">Done</button>
                                         </td>
                                     </tr>
                                     <tr ng-if="item.Notes != null && item.Notes != ''">
@@ -68,11 +68,12 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="data.Order == false">
+            <div ng-if="data.Order.OrderItem == false">
                 <h1>Empty List</h1>
             </div>
         </div>
     </div>
+    
 </div>
 
 
