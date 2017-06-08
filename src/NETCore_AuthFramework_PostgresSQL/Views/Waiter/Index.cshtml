@@ -61,10 +61,10 @@
 
                 <div ng-show="type.Order != null" class="col-md-4" ng-repeat="data in type.Order" style="padding-bottom:10px">
                     <div ng-if="data.Status == 0">
-                        <button class="btn btn-primary btn-lg  btn-block" ng-click="DetailOrder(data.OrderID)"><i class="glyphicon glyphicon-cutlery "></i> {{data.TableName}}{{data.Name}} <span class="badge">{{data.OrderServed}}</span></button>
+                        <button class="btn btn-primary btn-lg  btn-block fon" ng-click="DetailOrder(data.OrderID)"><i class="glyphicon glyphicon-cutlery "></i> {{data.TableName}}{{data.Name}} <span class="badge">{{data.OrderServed}}</span></button>
                     </div>
                     <div ng-if="data.Status != 0">
-                        <button class="btn btn-warning btn-lg  btn-block" ng-click="DetailOrder(data.OrderID)"><i class="glyphicon glyphicon-cutlery "></i> {{data.TableName}}{{data.Name}} <span class="badge">{{data.OrderServed}}</span></button>
+                        <button class="btn btn-warning btn-lg  btn-block fon" ng-click="DetailOrder(data.OrderID)"><i class="glyphicon glyphicon-cutlery "></i> {{data.TableName}}{{data.Name}} <span class="badge">{{data.OrderServed}}</span></button>
                     </div>
                 </div>
                 <div ng-hide="type.Order != false" class="col-md-4">
