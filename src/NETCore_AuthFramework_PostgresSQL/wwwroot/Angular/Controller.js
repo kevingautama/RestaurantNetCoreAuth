@@ -348,23 +348,23 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                                  
             } else {
 
-                    $scope.new = {
-                        "Name": $scope.Name,
-                        "TypeID": $scope.typeID,
-                        "TableID": $scope.tableID,
-                        "OrderItem": $scope.orderedItems
-                    };
-                    console.log($scope.new);
+                $scope.new = {
+                    "Name": $scope.Name,
+                    "TypeID": $scope.typeID,
+                    "TableID": $scope.tableID,
+                    "OrderItem": $scope.orderedItems
+                };
+                console.log($scope.new);
 
-                    console.log('trigger+', $scope.Name);
-                    testService = new testservice();
+                console.log('trigger+', $scope.Name);
+                testService = new testservice();
 
-                    testService.Name = $scope.Name;
-                    testService.TypeID = $scope.typeID;
-                    testService.TableID = $scope.tableID;
-                    testService.OrderItem = $scope.orderedItems;
-                    
-                    
+                testService.Name = $scope.Name;
+                testService.TypeID = $scope.typeID;
+                testService.TableID = $scope.tableID;
+                testService.OrderItem = $scope.orderedItems;
+
+
                 //testservice.data = $scope.new;
                     if ($scope.orderedItems.length > 0) {
                         if (testService.TypeID === 2) {
