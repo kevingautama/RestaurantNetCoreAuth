@@ -131,7 +131,7 @@ namespace RestaurantNetCore.Controllers
                 return NotFound();
             }
             ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryName", menu.CategoryID);
-            ViewData["StatusID"] = new SelectList(_context.Status, "StatusID", "StatusName", menu.StatusID);
+            ViewData["StatusID"] = new SelectList(_context.Status.Where(a => a.IsDeleted != true), "StatusID", "StatusName", menu.StatusID);
             return View(menu);
         }
 

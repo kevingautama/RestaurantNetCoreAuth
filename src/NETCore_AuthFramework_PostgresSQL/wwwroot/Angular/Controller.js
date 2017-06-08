@@ -233,6 +233,23 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
 
     };
 
+    $scope.cancelbyadmin = function (orderItemId, orderId) {
+        console.log(orderItemId + "," + orderId);
+       
+            testservice.CancelOrder({ id: orderItemId }, function (data) {
+                if (data.Status === true) {
+                    $scope.detailorder = {};
+                    $scope.DetailOrder(orderId);
+                    $scope.order = testservice.GetOrder();
+                }
+                //$scope.status = data;
+                console.log(data);
+            });
+        
+
+
+    };
+
     $scope.GetTable = function (typeid) {
         $scope.typeID = typeid;
         console.log($scope.typeID);
@@ -313,17 +330,22 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                         "OrderItem": $scope.orderedItems
                     }
                     //api post disini
-
-                    testservice.AddOrder($scope.new, function (data) {
-                        console.log($scope.new);
-                        console.log(data);
-                        $scope.order = testservice.GetOrder();
-                        $scope.detailorder = null;
-                        $scope.isAddOrder = false;
-                        $scope.selectedOrder = {};
-                        $scope.new = {};
-                        $('#myModal2').modal('hide');
-                    })                
+                    
+                    if ($scope.orderedItems.length > 0) {
+                        testservice.AddOrder($scope.new, function (data) {
+                            console.log($scope.new);
+                            console.log(data);
+                            $scope.order = testservice.GetOrder();
+                            $scope.detailorder = null;
+                            $scope.isAddOrder = false;
+                            $scope.selectedOrder = {};
+                            $scope.new = {};
+                            $('#myModal2').modal('hide');
+                        })
+                    } else {
+                        alert("Order Harus Diisi!")
+                    }
+                                 
             } else {
 
                     $scope.new = {
@@ -344,9 +366,18 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                     
                     
                 //testservice.data = $scope.new;
-                    if (testService.TypeID === 2) {
-                        if ($scope.Name == '') {
-                            alert('Silahkan isi Nama');
+                    if ($scope.orderedItems.length > 0) {
+                        if (testService.TypeID === 2) {
+                            if ($scope.Name == '') {
+                                alert('Silahkan isi Nama');
+                            } else {
+                                testService.$NewOrder().then(function (data) {
+                                    console.log(data);
+                                    $scope.order = testservice.GetOrder();
+                                    $scope.detailorder = null;
+                                    $('#myModal2').modal('hide');
+                                });
+                            }
                         } else {
                             testService.$NewOrder().then(function (data) {
                                 console.log(data);
@@ -356,13 +387,9 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                             });
                         }
                     } else {
-                        testService.$NewOrder().then(function (data) {
-                            console.log(data);
-                            $scope.order = testservice.GetOrder();
-                            $scope.detailorder = null;
-                            $('#myModal2').modal('hide');
-                        });
+                        alert("Order harus diisi!")
                     }
+                   
                                 
         }
     };
