@@ -84,13 +84,18 @@
                         <i class="glyphicon glyphicon-plus"></i>
                         Add Order
                     </button>
+                    
+                }
+                @if (User.IsInRole("Waiter"))
+                {
                     <button ng-click="edit()" ng-hide="isEditMode === true || isEditAllMode === true" class="btn btn-primary" @*data-toggle="modal" data-target="#ModalEdit" *@>
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </button>
+
                 }
-               
-                
+
+
                 @if (User.IsInRole("Admin"))
                 {
                     <button ng-click="editall()" ng-hide="isEditAllMode === true || isEditMode === true  " class="btn btn-warning" @*data-toggle="modal" data-target="#ModalEdit" *@>
