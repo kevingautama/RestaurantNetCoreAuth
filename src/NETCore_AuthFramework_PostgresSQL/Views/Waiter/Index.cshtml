@@ -24,9 +24,8 @@
     }
 
     .scroll {
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
-        max-height: 55vh;
     }
 
     .konten {
@@ -40,7 +39,6 @@
     input, select, textarea {
         max-width: unset;
     }
-    
 </style>
 
 <div class="row">
@@ -287,6 +285,11 @@
                     <div class="col-lg-3 col-lg-3s col-md-3" ng-repeat="tab in dataTable">
                         <input type="button" class="btn btn-lg btn-lgs" data-toggle="modal" data-target="#myModal2" data-dismiss="modal" value="{{tab.TableName}}" data-backdrop="static" ng-click="GetMenu(tab.TableID, tab.TableName, typeID)" />
                     </div>
+                    <div ng-if="dataTable == false">
+                        <center>
+                            <h5>No Table Available</h5>
+                        </center>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -323,9 +326,9 @@
                         <uib-tabset active="active">
                             <uib-tab ng-repeat="tab in menu.Category" heading="{{tab.CategoryName}}">
                                 <div class="row rows" style="padding-left:10px; padding-top:20px;">
-                                    <ul style="padding-left:10px;" class="scroll" dnd-list="tab.MenuItems">
+                                    <ul style="padding-left:10px;overflow-y:auto" class="scroll heigh" dnd-list="tab.MenuItems">
                                         <li class="columnangular" ng-repeat="item in tab.OrderItem"                                            
-                                            style="display:inline-block; padding-right:30px">
+                                            style="display:inline-block; padding-right:30px;">
                                             <img ng-src="data:{{item.ContentType}};base64,{{item.Content}}" class="imgs" ng-click="addqty(item)"/>
                                             <h4 style="text-align:center">{{item.MenuName}}</h4>
                                             <p style="font-size:13px; text-align:center;">{{item.Price}}</p>
