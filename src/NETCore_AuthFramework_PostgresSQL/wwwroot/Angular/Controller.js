@@ -305,56 +305,50 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
     $scope.CreateOrder = function () {
         console.log('test');
         //console.log($s, tableid)
-        
+        if ($scope.orderedItems < 1) {
+            alert('Silahkan Pilih Menu')
+        } else {
             if ($scope.isAddOrder) {
-               
-                    $scope.new = {
-                        "OrderID": $scope.orderID,
-                        "OrderItem": $scope.orderedItems
-                    }
-                    //api post disini
 
-                    testservice.AddOrder($scope.new, function (data) {
-                        console.log($scope.new);
-                        console.log(data);
-                        $scope.order = testservice.GetOrder();
-                        $scope.detailorder = null;
-                        $scope.isAddOrder = false;
-                        $scope.selectedOrder = {};
-                        $scope.new = {};
-                        $('#myModal2').modal('hide');
-                    })                
+                $scope.new = {
+                    "OrderID": $scope.orderID,
+                    "OrderItem": $scope.orderedItems
+                }
+                //api post disini
+
+                testservice.AddOrder($scope.new, function (data) {
+                    console.log($scope.new);
+                    console.log(data);
+                    $scope.order = testservice.GetOrder();
+                    $scope.detailorder = null;
+                    $scope.isAddOrder = false;
+                    $scope.selectedOrder = {};
+                    $scope.new = {};
+                    $('#myModal2').modal('hide');
+                })
             } else {
 
-                    $scope.new = {
-                        "Name": $scope.Name,
-                        "TypeID": $scope.typeID,
-                        "TableID": $scope.tableID,
-                        "OrderItem": $scope.orderedItems
-                    };
-                    console.log($scope.new);
+                $scope.new = {
+                    "Name": $scope.Name,
+                    "TypeID": $scope.typeID,
+                    "TableID": $scope.tableID,
+                    "OrderItem": $scope.orderedItems
+                };
+                console.log($scope.new);
 
-                    console.log('trigger+', $scope.Name);
-                    testService = new testservice();
+                console.log('trigger+', $scope.Name);
+                testService = new testservice();
 
-                    testService.Name = $scope.Name;
-                    testService.TypeID = $scope.typeID;
-                    testService.TableID = $scope.tableID;
-                    testService.OrderItem = $scope.orderedItems;
-                    
-                    
+                testService.Name = $scope.Name;
+                testService.TypeID = $scope.typeID;
+                testService.TableID = $scope.tableID;
+                testService.OrderItem = $scope.orderedItems;
+
+
                 //testservice.data = $scope.new;
-                    if (testService.TypeID === 2) {
-                        if ($scope.Name == '') {
-                            alert('Silahkan isi Nama');
-                        } else {
-                            testService.$NewOrder().then(function (data) {
-                                console.log(data);
-                                $scope.order = testservice.GetOrder();
-                                $scope.detailorder = null;
-                                $('#myModal2').modal('hide');
-                            });
-                        }
+                if (testService.TypeID === 2) {
+                    if ($scope.Name == '') {
+                        alert('Silahkan isi Nama');
                     } else {
                         testService.$NewOrder().then(function (data) {
                             console.log(data);
@@ -363,8 +357,18 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                             $('#myModal2').modal('hide');
                         });
                     }
-                                
+                } else {
+                    testService.$NewOrder().then(function (data) {
+                        console.log(data);
+                        $scope.order = testservice.GetOrder();
+                        $scope.detailorder = null;
+                        $('#myModal2').modal('hide');
+                    });
+                }
+
+            }
         }
+            
     };
 
     // create function order
