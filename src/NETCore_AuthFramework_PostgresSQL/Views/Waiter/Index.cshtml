@@ -347,12 +347,12 @@
                         </uib-tabset>
                     </div>
 
-                    <div class="col-lg-8 scroll heigh2" style="overflow-y:auto">
+                    <div class="col-lg-8 scroll heigh2"  >
                         <div class="tabbable">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#fooddetail" data-toggle="tab">Your Order</a></li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="tab-content heigh2" style="overflow-y:auto">
                                 <div id="fooddetail" class="tab-pane active" >
                                     <table class="table table-responsive" style="border-bottom-style:hidden">
                                         <thead>
@@ -364,7 +364,7 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody dnd-list="orderedItems" dnd-drop="addqty(item)">
+                                        <tbody dnd-list="orderedItems" dnd-drop="addqty(item)" >
                                             <tr ng-repeat="item in orderedItems">
                                                 <td>{{item.MenuName}}</td>
                                                 <td>{{item.Qty}}</td>
