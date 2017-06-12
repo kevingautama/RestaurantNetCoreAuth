@@ -240,5 +240,14 @@ namespace RestaurantNetCore.Controllers
             var fileToRetrieve = _context.Menu.SingleOrDefault(m => m.MenuID == id);
             return File(fileToRetrieve.Content, fileToRetrieve.ContentType);
         }
+
+        public ActionResult ChangeStatus(int id)
+        {
+            var data = _context.Menu.Include(m => m.Status).SingleOrDefault(m =>m.MenuID == id);
+            data.StatusID = _context.Status.FirstOrDefault(m => m.StatusName != data.Status.StatusName).StatusID;
+            _context.Update(data);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

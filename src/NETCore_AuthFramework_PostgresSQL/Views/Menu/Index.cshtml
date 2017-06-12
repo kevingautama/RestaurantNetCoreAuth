@@ -41,7 +41,19 @@
                 @Html.DisplayFor(modelItem => item.MenuPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusName)
+               
+                @if (item.Status.StatusID == 1)
+                {
+                    <div>
+                        <b>Ready</b>|<a asp-action="ChangeStatus" asp-route-id="@item.MenuID">NotReady</a> 
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a asp-action="ChangeStatus" asp-route-id="@item.MenuID">Ready</a> |<b> NotReady </b>
+                    </div>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)

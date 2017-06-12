@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="angular/Controller.js" />
+/// <reference path="angular/directive.js" />
 /// <reference path="angular/Module.js" />
 /// <reference path="angular/Service.js" />
 /// <reference path="js/site.js" />
