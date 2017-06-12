@@ -336,14 +336,17 @@
                                                 <td>{{item.Qty}}</td>
                                                 <td>{{item.Price * item.Qty}}</td>
                                                 <td><input class="form-control input-xs" ng-model="item.Notes" /></td>
-                                                <td><button class="btn btn-primary btn-xs" ng-click="delqty(item.MenuID, $index)">
+                                                <td>
                                                     <div ng-if="item.Qty > 1">
-                                                        <i class="glyphicon glyphicon-minus"></i>
+                                                        <button class="btn btn-primary btn-xs" ng-click="delqty(item.MenuID, $index)">
+                                                            <i class="glyphicon glyphicon-minus"></i>
+                                                        </button>
                                                     </div>
                                                     <div ng-if="item.Qty <= 1">
-                                                        <i class="glyphicon glyphicon-remove"></i>
-                                                    </div>                                                    
-                                                    </button>
+                                                        <button class="btn btn-danger btn-xs" ng-click="delqty(item.MenuID, $index)">
+                                                            <i class="glyphicon glyphicon-remove"></i>
+                                                        </button>
+                                                    </div>                                                 
                                                 </td>
                                             </tr>
                                             <tr>
