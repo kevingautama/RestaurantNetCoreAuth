@@ -166,10 +166,11 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
     };
 
     $scope.print = function (div) {
+       
         testservice.InfoRestaurant(function (data) {
             $scope.info = data;
             var printContents = document.getElementById(div).innerHTML;
-
+            
             var popupWin = window.open("", "");
 
             popupWin.document.write('<html><head><title>Restaurant</title>'
