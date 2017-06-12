@@ -21,6 +21,9 @@
                 @Html.DisplayNameFor(model => model.MenuPrice)
             </th>
             <th>
+                Menu Status
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Category.CategoryName)
             </th>
             <th></th>
@@ -36,6 +39,9 @@
           
             <td>
                 @Html.DisplayFor(modelItem => item.MenuPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
