@@ -315,19 +315,14 @@
                     <h4>{{baru.TableName}}</h4>
                 </div>
                 <div ng-show="typeID == 2">
-                  
-                        <h4 ng-if="isAddOrder === false" class="modal-title">Input Name Here</h4>
-                        <input ng-show="isAddOrder === false" type="text" ng-model="Name" />
-                        <h4 ng-if="isAddOrder === true" class="modal-title">{{Name}}</h4>
-            
-                    
+                    <h4 ng-if="isAddOrder === false" class="modal-title">Name*</h4>
+                    <input ng-show="isAddOrder === false" type="text" ng-model="Name" />
+                    <h4 ng-if="isAddOrder === true" class="modal-title">{{Name}}</h4>                       
                 </div>
-                <p>Restaurant Menu</p>
             </div>
             <div class="modal-body" style="height:480px;">
                 <div class="row">
                     <div class="col-lg-4 ">
-                        @*drag and drop kak ria*@
                         <uib-tabset active="active">
                             <uib-tab ng-repeat="tab in menu.Category" heading="{{tab.CategoryName}}">
                                 <div class="row rows" style="padding-left:10px; padding-top:20px;">
@@ -370,7 +365,15 @@
                                                 <td>{{item.Qty}}</td>
                                                 <td>{{item.Price * item.Qty}}</td>
                                                 <td><input class="form-control input-xs" ng-model="item.Notes" /></td>
-                                                <td><button class="btn btn-primary btn-xs" ng-click="delqty(item.MenuID, $index)"><i class="glyphicon glyphicon-remove"></i></button></td>
+                                                <td><button class="btn btn-primary btn-xs" ng-click="delqty(item.MenuID, $index)">
+                                                    <div ng-if="item.Qty > 1">
+                                                        <i class="glyphicon glyphicon-minus"></i>
+                                                    </div>
+                                                    <div ng-if="item.Qty <= 1">
+                                                        <i class="glyphicon glyphicon-remove"></i>
+                                                    </div>                                                    
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>

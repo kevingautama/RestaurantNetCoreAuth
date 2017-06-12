@@ -33,11 +33,11 @@
         </div>
     </nav>
     <div style="overflow-y:hidden;overflow-x:hidden">
-        <div class="row" style="overflow-x:scroll;overflow-y:scroll; white-space:nowrap;direction:rtl ;height:44vh">
+        <div class="row" style="overflow-x:scroll; overflow-y:scroll; white-space:nowrap;direction:rtl ;height:44vh">
             <div ng-hide="order.OrderItem == false" ng-repeat="order in data.Order" class="col-md-2" style="display:inline-table;float:none; direction:initial;">
                 <div class="panel panel-primary">
                     <div class="panel-heading">{{order.TableName}}{{order.Name}}</div>
-                    <div class="panel-body">
+                    <div class="panel-body wid" style="overflow-y:scroll; max-height:30vh;">
                         <div class="table-responsive">
                             <table class="table ">
                                 <tbody ng-repeat="item in order.OrderItem">
@@ -56,21 +56,16 @@
                                 </tbody>
 
                                 <tr ng-if="data.Status == 'Cook'">
-                                    <td colspan="3"><button class="btn btn-primary btn-block" ng-click="printkitchen(order.OrderID)">All Done</button></td>
+                                    <td colspan="3"><button class="btn btn-xs btn-primary btn-block" ng-click="printkitchen(order.OrderID)">All Done</button></td>
                                 </tr>
                                 <tr ng-if="data.Status == 'Order'">
-                                    <td colspan="3"><button class="btn btn-primary btn-block" ng-click="cookall(order.OrderID)">All Cook</button></td>
+                                    <td colspan="3"><button class="btn btn-xs btn-primary btn-block" ng-click="cookall(order.OrderID)">All Cook</button></td>
                                 </tr>
-
-
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div ng-if="data.Order.OrderItem == false">
-                <h1>Empty List</h1>
-            </div>
+            </div>           
         </div>
     </div>
     

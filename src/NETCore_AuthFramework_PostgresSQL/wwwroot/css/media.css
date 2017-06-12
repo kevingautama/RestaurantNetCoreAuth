@@ -10,6 +10,10 @@
     font-size:1.4vw;
 }
 
+.wid{
+    width:30vw;
+}
+
 @media only screen and (min-device-width : 769px) and (max-device-width : 1024px) {
     .heigh {
         max-height:20vh;
@@ -17,6 +21,9 @@
     .heigh2{
         max-height:30vh;
         height:unset;
+    }  
+    .wid{
+        width:25vw;
     }
 }
 @media (max-device-width : 768px) {
