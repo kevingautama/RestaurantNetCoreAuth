@@ -1,4 +1,5 @@
 ﻿var controller = angular.module('testController', []);
+
 controller.controller('testcontroller', function ($scope, testservice, kitchenservice, $timeout) {
     var testService = new testservice();
     var kitchenService = new kitchenservice();
@@ -155,10 +156,13 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                 $scope.pay = false;
             }
         });
+       
+        
         if ($scope.pay === false) {
             alert('semua makanan belum dihidang');
-        }
-
+        };
+      
+        
     };
     $scope.CancelPay = function () {
 
@@ -175,7 +179,7 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
 
             popupWin.document.write('<html><head><title>Restaurant</title>'
                 + '<link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />'
-                + '</head><body onload="window.print()"><center>'
+                + '</head><body onload="window.print();window.close();"><center>'
                 + '<div class="row"><h4>' + $scope.info.HeaderLine1 + '</h4></div>'
                 + '<div class="row"><h4>' + $scope.info.HeaderLine2 + '</h4></div>'
                 + '<div class="row"><h4>' + $scope.info.HeaderLine3 + '</h4></div>'
@@ -184,7 +188,11 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
                 + '<div class="row"><h4>' + $scope.info.FooterLine2 + '</h4></div>'
                 + '<div class="row"><h4>' + $scope.info.FooterLine3 + '</h4></div>'
                 + '</body></html>');
+            
+            
+            
             popupWin.document.close();
+
         })
        
     };

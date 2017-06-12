@@ -125,7 +125,7 @@
                     <h5><b>Order No : {{detailorder.OrderID}}</b></h5>
                 </div>
                 <div class="col-md-6">
-                    <h5><em>{{detailorder.OrderDate}}</em></h5>
+                    <h5><em>{{detailorder.OrderDate | date}}</em></h5>
                 </div>
             </div>
             <div class="row">
@@ -202,20 +202,20 @@
                     <table class="table table-responsive table-bordered ">
                         <tr>
                             <td>SubTotal</td>
-                            <td><b style="font-size:larger">{{grandTotal}}</b></td>
+                            <td><b style="font-size:larger">{{grandTotal | currency : "Rp. "}}</b></td>
                         </tr>
                         <tr>
                             <td>Pajak</td>
-                            <td><b style="font-size:larger">{{tax}}</b></td>
+                            <td><b style="font-size:larger">{{tax | currency : "Rp. "}}</b></td>
                         </tr>
                         <tr>
                             <td>GrandTotal</td>
-                            <td><b style="font-size:larger">{{tax + grandTotal}}</b></td>
+                            <td><b style="font-size:larger">{{tax + grandTotal | currency : "Rp. "}}</b></td>
                         </tr>
                     </table>
-                    <div ng-show="pay === true">
-                        <input type="text" ng-model="uang" onkeydown = "if (event.keyCode == 13) document.getElementById('pay').click()"   class="form-control" />
-                        <h2>Kembalian : {{uang-(grandTotal + tax)}}</h2>
+                    <div ng-show="pay === true"  focus-on-show>
+                        <input id="test1" type="number" ng-model="uang" onkeydown = "if (event.keyCode == 13) document.getElementById('pay').click()" class="form-control"/>
+                        <h2>Kembalian : {{uang-(grandTotal + tax) | currency : "Rp. "}}</h2>
                     </div>
 
                     <div ng-show="pay != true" class="btn-group btn-group-justified">
@@ -225,14 +225,14 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("Cashier"))
                         {
                             <div class="btn-group">
-                                <button class="btn btn-lg btn-success " style="margin-bottom:10px" ng-click="Pay()"><i class="glyphicon glyphicon-credit-card"></i> Pay </button>
+                                <button class="btn btn-lg btn-success " style="margin-bottom:10px" ng-click="Pay()" ><i class="glyphicon glyphicon-credit-card"></i> Pay </button>
                             </div>
                         }
                         
                     </div>
                     <div ng-show="pay == true" class="btn-group btn-group-justified">
                         <div class="btn-group">
-                            <button class="btn btn-danger btn-lg" ng-click="CancelPay()">Cancel</button>
+                            <button class="btn btn-danger btn-lg" ng-click="CancelPay()" >Cancel</button>
                         </div>
                         <div class="btn-group">
                             <button class="btn btn-success btn-lg" id="pay" ng-click="GoPay(detailorder.OrderID,uang,grandTotal+tax)">Pay</button>
@@ -390,12 +390,12 @@
                 <th>
                     Qty
                 </th>
-                <th>
-                    Harga
-                </th>
-                <th>
-                    Total
-                </th>
+                <td align="right">
+                    <b>Harga</b>
+                </td>
+                <td align="right">
+                    <b>Total</b>
+                </td>
 
                 
             </tr>
@@ -403,23 +403,23 @@
                 <td>{{item.MenuName}}</td>
 
                 <td>{{item.Qty}}</td>
-                <td>{{item.Price}}</td>
-                <td>{{item.Price*item.Qty}}</td>
+                <td align="right">{{item.Price}}</td>
+                <td align="right">{{item.Price*item.Qty}}</td>
             </tr>
 
         </table>
         <table class="table table-responsive table-bordered ">
             <tr>
                 <td>SubTotal</td>
-                <td>{{grandTotal}}</td>
+                <td align="right">{{grandTotal}}</td>
             </tr>
             <tr>
                 <td>Pajak</td>
-                <td>{{tax}}</td>
+                <td align="right">{{tax}}</td>
             </tr>
             <tr>
                 <td>GrandTotal</td>
-                <td>{{tax + grandTotal}}</td>
+                <td align="right">{{tax + grandTotal}}</td>
             </tr>
         </table>
     </div>
