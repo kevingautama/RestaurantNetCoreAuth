@@ -129,76 +129,80 @@
                 </div>
             </div>
             <div class="row">
-                <div style="height:100%  inherit;">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>
-                                Menu
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Qty
-                            </th>
-                            <th>
-                                Harga
-                            </th>
-                            <th>
-                                Total
-                            </th>
-                            <th>
-                                Notes
-                            </th>
-                            <th></th>
-                        </tr>
+                <div>
+                    <div style="overflow:auto;max-height:42vh">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Menu
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Qty
+                                    </th>
+                                    <th>
+                                        Harga
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <th>
+                                        Notes
+                                    </th>
+                                    <th></th>
+                                </tr>
                             </thead>
-                        <tbody style="overflow:auto ;height:200px" >
-                            <tr ng-repeat="item in detailorder.OrderItem">
-                                <td>{{item.MenuName}}</td>
-                                <td>
-                                    <span ng-if="item.Status == 'Order' || item.Status == 'Cook' || item.Status == 'FinishCook'" class="label label-primary">{{item.Status}}</span>
-                                    <span ng-if="item.Status == 'Served'" class="label label-success">{{item.Status}}</span>
-                                </td>
-                                <td ng-show="!isEditMode && !isEditAllMode">{{item.Qty}}</td>
-                                <td ng-show="(isEditMode && item.Status == 'Order')||(isEditAllMode)">
-                                    <button class="btn btn-primary btn-xs" ng-click="EditQtyMinus($index)">
-                                        <i class="glyphicon glyphicon-minus"></i>
-                                    </button>
-                                    <label style="padding-left:5px; padding-right:5px">{{item.Qty}}</label>
-                                    <button class="btn btn-primary btn-xs" ng-click="EditQtyPlus($index)">
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                    </button>
-                                </td>
-                                <td ng-show="isEditMode && item.Status != 'Order'">{{item.Qty}}</td>
-                                <td>{{item.Price}}</td>
-                                <td>{{item.Price*item.Qty}}</td>
-                                <td ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
-                                <td ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
-                                <td ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
-                                <td>
-                                    @if (User.IsInRole("Waiter"))
-                                    {
-                                        <button ng-if="item.Status == 'Order'" ng-click="cancel(item.OrderItemID,detailorder.OrderID)" class="btn btn-danger btn-xs btn-block">Cancel</button>
+                            <tbody>
+                                <tr ng-repeat="item in detailorder.OrderItem">
+                                    <td>{{item.MenuName}}</td>
+                                    <td>
+                                        <span ng-if="item.Status == 'Order' || item.Status == 'Cook' || item.Status == 'FinishCook'" class="label label-primary">{{item.Status}}</span>
+                                        <span ng-if="item.Status == 'Served'" class="label label-success">{{item.Status}}</span>
+                                    </td>
+                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Qty}}</td>
+                                    <td ng-show="(isEditMode && item.Status == 'Order')||(isEditAllMode)">
+                                        <button class="btn btn-primary btn-xs" ng-click="EditQtyMinus($index)">
+                                            <i class="glyphicon glyphicon-minus"></i>
+                                        </button>
+                                        <label style="padding-left:5px; padding-right:5px">{{item.Qty}}</label>
+                                        <button class="btn btn-primary btn-xs" ng-click="EditQtyPlus($index)">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </button>
+                                    </td>
+                                    <td ng-show="isEditMode && item.Status != 'Order'">{{item.Qty}}</td>
+                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Price | currency: "Rp. "}}</td>
+                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Price*item.Qty | currency: "Rp. "}}</td>
+                                    <td ng-show="isEditAllMode || isEditMode">{{item.Price }}</td>
+                                    <td ng-show="isEditAllMode || isEditMode">{{item.Price*item.Qty}}</td>
+                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
+                                    <td ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
+                                    <td ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
+                                    <td>
+                                        @if (User.IsInRole("Waiter"))
+                                        {
+                                            <button ng-if="item.Status == 'Order'" ng-click="cancel(item.OrderItemID,detailorder.OrderID)" class="btn btn-danger btn-xs btn-block">Cancel</button>
 
-                                    }
-                                    @if (User.IsInRole("Admin") || User.IsInRole("Waiter"))
-                                    {
-                                        
-                                        <button ng-if="item.Status == 'FinishCook'" ng-click="serve(item.OrderItemID,detailorder.OrderID)" class="btn btn-primary btn-xs btn-block">Served</button>
-                                    }
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <button ng-click="cancelbyadmin(item.OrderItemID,detailorder.OrderID)" class="btn btn-danger btn-xs btn-block">Cancel</button>
+                                        }
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Waiter"))
+                                        {
 
-                                    }
+                                            <button ng-if="item.Status == 'FinishCook'" ng-click="serve(item.OrderItemID,detailorder.OrderID)" class="btn btn-primary btn-xs btn-block">Served</button>
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <button ng-click="cancelbyadmin(item.OrderItemID,detailorder.OrderID)" class="btn btn-danger btn-xs btn-block">Cancel</button>
 
-                                </td>
-                            </tr>
-                        </tbody>
-                        
-                    </table>
+                                        }
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <table class="table table-responsive table-bordered ">
                         <tr>
                             <td>SubTotal</td>
@@ -214,7 +218,8 @@
                         </tr>
                     </table>
                     <div ng-show="pay === true"  focus-on-show>
-                        <input id="test1" type="number" ng-model="uang" onkeydown = "if (event.keyCode == 13) document.getElementById('pay').click()" class="form-control"/>
+                        
+                        <input @*style="text-align:right"*@ id="test1" type="text" ng-model="uang" ui-number-mask="0" onkeydown = "if (event.keyCode == 13) document.getElementById('pay').click()" class="form-control number"/>
                         <h2>Kembalian : {{uang-(grandTotal + tax) | currency : "Rp. "}}</h2>
                     </div>
 
@@ -403,23 +408,29 @@
                 <td>{{item.MenuName}}</td>
 
                 <td>{{item.Qty}}</td>
-                <td align="right">{{item.Price}}</td>
-                <td align="right">{{item.Price*item.Qty}}</td>
+                <td align="right">{{item.Price | currency : "Rp. "}}</td>
+                <td align="right">{{item.Price*item.Qty | currency : "Rp. "}}</td>
             </tr>
+            @*<tr>
+                <td></td>
+                <td>{{grandQty}}</td>
+                <td></td>
+                <td align="right">{{grandTotal | currency : "Rp. "}}</td>
+            </tr>*@
 
         </table>
         <table class="table table-responsive table-bordered ">
             <tr>
                 <td>SubTotal</td>
-                <td align="right">{{grandTotal}}</td>
+                <td align="right">{{grandTotal | currency : "Rp. "}}</td>
             </tr>
             <tr>
                 <td>Pajak</td>
-                <td align="right">{{tax}}</td>
+                <td align="right">{{tax | currency : "Rp. "}}</td>
             </tr>
             <tr>
                 <td>GrandTotal</td>
-                <td align="right">{{tax + grandTotal}}</td>
+                <td align="right">{{tax + grandTotal | currency : "Rp. "}}</td>
             </tr>
         </table>
     </div>

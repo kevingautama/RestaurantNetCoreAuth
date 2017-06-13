@@ -2,68 +2,142 @@
 
 @{
     ViewData["Title"] = "Index";
+    //Layout = "~/Views/Shared/_LayoutNoContainer.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+    <table class="table" id="tableMenu">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuPrice)
+                </th>
+                <th>
+                    Menu Status
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.CategoryName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuName)
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.MenuPrice)
+                </td>
+                <td>
+
+                    @if (item.Status.StatusID == 1)
+                    {
+                        <div>
+                            <b>Ready</b>|<a asp-action="ChangeStatus" asp-route-id="@item.MenuID">NotReady</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <a asp-action="ChangeStatus" asp-route-id="@item.MenuID">Ready</a> |<b> NotReady </b>
+                        </div>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MenuID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MenuID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MenuID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+
+@*<div class="container">
+    <h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div ng-init="data = [
+     @foreach (var item in Model) {
+         <text>{MenuID: '@item.MenuID' , MenuName: '@item.MenuName' , MenuPrice: '@item.MenuPrice', MenuStatus: '@item.Status.StatusName' ,MenuCategory: '@item.Category.CategoryName'},</text>
+     }
+     ]">
+    </div>
+
+    <table class="table">
         <tr>
-            
             <th>
-                @Html.DisplayNameFor(model => model.MenuName)
-            </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.MenuPrice)
+                MenuName
             </th>
             <th>
-                Menu Status
+                MenuPrice
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category.CategoryName)
+                MenuStatus
+            </th>
+            <th>
+                MenuCategory
             </th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
+        <tr ng-repeat="model in data">
+            
             <td>
-                @Html.DisplayFor(modelItem => item.MenuName)
-            </td>
-          
-            <td>
-                @Html.DisplayFor(modelItem => item.MenuPrice)
+                {{model.MenuName}}
             </td>
             <td>
-               
-                @if (item.Status.StatusID == 1)
-                {
-                    <div>
-                        <b>Ready</b>|<a asp-action="ChangeStatus" asp-route-id="@item.MenuID">NotReady</a> 
-                    </div>
-                }
-                else
-                {
-                    <div>
-                        <a asp-action="ChangeStatus" asp-route-id="@item.MenuID">Ready</a> |<b> NotReady </b>
-                    </div>
-                }
+                {{model.MenuPrice | currency: 'Rp. '}}
+            </td>
+            <td ng-show="model.MenuStatus == 'Ready'">
+                 
+                <b>{{model.MenuStatus}}</b>|<a ng-href="@Url.Content("~/Menu/ChangeStatus/"){{model.MenuID}}">NotReady</a>
+
+            </td>
+            <td ng-show="model.MenuStatus == 'NotReady'">
+
+                <a ng-href="@Url.Content("~/Menu/ChangeStatus/"){{model.MenuID}}">Ready</a>|<b>{{model.MenuStatus}}</b>
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                {{model.MenuCategory}}
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MenuID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MenuID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MenuID">Delete</a>
+                <a ng-href="@Url.Content("~/Menu/Edit/"){{model.MenuID}}">Edit</a> |
+                <a ng-href="@Url.Content("~/Menu/Details/"){{model.MenuID}}">Details</a> |
+                <a ng-href="@Url.Content("~/Menu/Delete/"){{model.MenuID}}">Delete</a> 
             </td>
         </tr>
-}
-    </tbody>
-</table>
+    </table>
+</div>*@
+
+
+<script>
+    $(document).ready(function () {
+        $('#tableMenu').dataTable({
+            "columnDefs": [{
+                "targets": [4],
+                "orderable": false
+            }, { "searchable": false, "targets": [1],"type":"currency" }
+            ]
+            ,
+            "bPaginate": false
+            
+        });
+    });
+
+</script>

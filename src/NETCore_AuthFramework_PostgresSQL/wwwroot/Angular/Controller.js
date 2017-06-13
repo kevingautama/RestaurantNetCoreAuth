@@ -5,7 +5,7 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
     var kitchenService = new kitchenservice();
 
     $scope.grandTotal = 0;
-
+    //$scope.grandQty = 0;
     $scope.detailorder = {};
     $scope.dataTable = [];
     $scope.order = testservice.GetOrder();
@@ -57,6 +57,7 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
 
     $scope.calculateGrandTotal = function () {
         $scope.grandTotal = 0;
+        //$scope.grandQty = 0;
         $scope.tax = 0;
         console.log('Triggered');
 
@@ -64,6 +65,7 @@ controller.controller('testcontroller', function ($scope, testservice, kitchense
             console.log('Triggered 1');
             $scope.grandTotal = $scope.grandTotal + item.Qty * item.Price;
             console.log(item);
+            //$scope.grandQty = $scope.grandQty + item.Qty;
         });
         $scope.tax = $scope.grandTotal * 0.1;
     };

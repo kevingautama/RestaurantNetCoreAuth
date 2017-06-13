@@ -9,7 +9,8 @@
     "angular": "1.6.4",
     "angular-resource": "1.6.4",
     "angular-route": "1.6.4",
-    "angular-drag-and-drop-lists": "2.1.0"
+    "angular-drag-and-drop-lists": "2.1.0",
+    "datatables": "1.10.11"
   },
   "resolutions": {
     "angular": "1.6.4"
