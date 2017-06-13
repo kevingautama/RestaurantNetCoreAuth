@@ -26,7 +26,6 @@ namespace RestaurantNetCore.Controllers
             return View();
         }
 
-        [Authorize(Roles ="Admin")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
