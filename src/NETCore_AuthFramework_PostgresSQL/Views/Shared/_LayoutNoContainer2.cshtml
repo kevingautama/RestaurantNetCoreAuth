@@ -55,13 +55,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="Main">Main</a></li>
+                     @if (User.IsInRole("Admin"))
+                     {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Restaurant<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="Menu" asp-action="index">Menu</a></li>
+                                <li><a asp-controller="Category" asp-action="Index">Category</a></li>
+                                <li><a asp-controller="Table" asp-action="Index">Table</a></li>
+                                <li><a asp-controller="Bill" asp-action="Index">Bill</a></li>
+                                <li><a asp-controller="Order" asp-action="Index">Order</a></li>
+                            </ul>
+                        </li>
 
-
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Auth<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="ApplicationUser" asp-action="Index">Application User</a></li>
+                                <li><a asp-area="" asp-controller="ApplicationRole" asp-action="Index">Application Role</a></li>
+                                <li><a asp-area="" asp-controller="ApplicationUserRole" asp-action="Index">Application User Role</a></li>
+                            </ul>
+                        </li>
+                     }
                      @if (User.IsInRole("Admin"))
                      {
                         <li class="dropdown">
