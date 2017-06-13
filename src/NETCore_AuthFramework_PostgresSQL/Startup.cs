@@ -98,6 +98,8 @@ namespace RestaurantNetCore
 
             app.UseIdentity();
 
+            
+
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
@@ -106,6 +108,12 @@ namespace RestaurantNetCore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            app.UseStatusCodePagesWithRedirects("/Account/Login");
+
+
+
         }
     }
 }
