@@ -179,7 +179,7 @@
                                     <td style="vertical-align:middle" ng-show="isEditAllMode || isEditMode">{{item.Price }}</td>
                                     <td style="vertical-align:middle" ng-show="isEditAllMode || isEditMode">{{item.Price*item.Qty}}</td>
                                     <td style="vertical-align:middle" ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
-                                    <td style="vertical-align:middle" ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
+                                    <td style="vertical-align:middle;width:30%" ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" ><input class="form-control input-sm" ng-model="item.Notes" /></td>
                                     <td style="vertical-align:middle" ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
                                     <td style="vertical-align:middle">
                                         @if (User.IsInRole("Waiter"))
