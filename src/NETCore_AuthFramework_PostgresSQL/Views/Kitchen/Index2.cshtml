@@ -42,8 +42,8 @@
                             <table class="table ">
                                 <tbody ng-repeat="item in order.OrderItem">
                                     <tr>
-                                        <td>{{item.Qty}}</td>
-                                        <td>{{item.MenuName}}</td>
+                                        <td style="vertical-align:middle">{{item.Qty}}</td>
+                                        <td style="vertical-align:middle">{{item.MenuName}}</td>
                                         <td>
                                             <button ng-if="data.Status == 'Order'" class="btn btn-danger btn-xs" ng-click="CookOrderItem(item.OrderItemID)"><i class="glyphicon glyphicon-fire"></i></button>
                                             <button ng-if="data.Status == 'Cook'" class="btn btn-success btn-xs" ng-click="FinishOrderItem(item.OrderItemID)"><i class="glyphicon glyphicon-ok"></i></button>

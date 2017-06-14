@@ -124,8 +124,9 @@
                 <div class="col-md-6">
                     <h5><b>Order No : {{detailorder.OrderID}}</b></h5>
                 </div>
-                <div class="col-md-6">
-                    <h5><em>{{detailorder.OrderDate | date}}</em></h5>
+                <div class="col-md-6" style="text-align:right">
+
+                    <h5><em>{{detailorder.OrderDate | date:'dd/MM/yyyy'}}</em></h5>
                 </div>
             </div>
             <div class="row">
@@ -307,7 +308,7 @@
                                             style="display:inline-block; padding-right:30px;">
                                             <img ng-src="data:{{item.ContentType}};base64,{{item.Content}}" class="imgs" ng-click="addqty(item)"/>
                                             <h4 style="text-align:center">{{item.MenuName}}</h4>
-                                            <p style="font-size:13px; text-align:center;">{{item.Price}}</p>
+                                            <p style="font-size:13px; text-align:center;">{{item.Price | currency: 'Rp. '}}</p>
                                         </li>
                                         <li ng-if="tab.OrderItem == false">
                                             <center><h3>Empty List</h3></center>
@@ -339,7 +340,7 @@
                                             <tr ng-repeat="item in orderedItems" style="font-size:15px;">
                                                 <td style="vertical-align:middle">{{item.MenuName}}</td>
                                                 <td style="vertical-align:middle">{{item.Qty}}</td>
-                                                <td style="vertical-align:middle">{{item.Price * item.Qty}}</td>
+                                                <td style="vertical-align:middle">{{item.Price * item.Qty | currency: 'Rp. '}}</td>
                                                 <td><input style="width:100%" ng-model="item.Notes" /></td>
                                                 <td style="vertical-align:middle">
                                                     <div ng-if="item.Qty > 1">
