@@ -158,13 +158,13 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in detailorder.OrderItem">
-                                    <td>{{item.MenuName}}</td>
-                                    <td>
+                                    <td style="vertical-align:middle">{{item.MenuName}}</td>
+                                    <td style="vertical-align:middle">
                                         <span ng-if="item.Status == 'Order' || item.Status == 'Cook' || item.Status == 'FinishCook'" class="label label-primary">{{item.Status}}</span>
                                         <span ng-if="item.Status == 'Served'" class="label label-success">{{item.Status}}</span>
                                     </td>
-                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Qty}}</td>
-                                    <td ng-show="(isEditMode && item.Status == 'Order')||(isEditAllMode)">
+                                    <td style="vertical-align:middle" ng-show="!isEditMode && !isEditAllMode">{{item.Qty}}</td>
+                                    <td style="vertical-align:middle" ng-show="(isEditMode && item.Status == 'Order')||(isEditAllMode)">
                                         <button class="btn btn-primary btn-xs" ng-click="EditQtyMinus($index)">
                                             <i class="glyphicon glyphicon-minus"></i>
                                         </button>
@@ -173,15 +173,15 @@
                                             <i class="glyphicon glyphicon-plus"></i>
                                         </button>
                                     </td>
-                                    <td ng-show="isEditMode && item.Status != 'Order'">{{item.Qty}}</td>
-                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Price | currency: "Rp. "}}</td>
-                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Price*item.Qty | currency: "Rp. "}}</td>
-                                    <td ng-show="isEditAllMode || isEditMode">{{item.Price }}</td>
-                                    <td ng-show="isEditAllMode || isEditMode">{{item.Price*item.Qty}}</td>
-                                    <td ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
-                                    <td ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
-                                    <td ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
-                                    <td>
+                                    <td style="vertical-align:middle" ng-show="isEditMode && item.Status != 'Order'">{{item.Qty}}</td>
+                                    <td style="vertical-align:middle" ng-show="!isEditMode && !isEditAllMode">{{item.Price | currency: "Rp. "}}</td>
+                                    <td style="vertical-align:middle" ng-show="!isEditMode && !isEditAllMode">{{item.Price*item.Qty | currency: "Rp. "}}</td>
+                                    <td style="vertical-align:middle" ng-show="isEditAllMode || isEditMode">{{item.Price }}</td>
+                                    <td style="vertical-align:middle" ng-show="isEditAllMode || isEditMode">{{item.Price*item.Qty}}</td>
+                                    <td style="vertical-align:middle" ng-show="!isEditMode && !isEditAllMode">{{item.Notes}}</td>
+                                    <td style="vertical-align:middle" ng-show="(isEditMode && item.Status == 'Order') ||(isEditAllMode)" style="width:30%"><input class="form-control input-sm" ng-model="item.Notes" /></td>
+                                    <td style="vertical-align:middle" ng-show="(isEditMode && item.Status != 'Order') ">{{item.Notes}}</td>
+                                    <td style="vertical-align:middle">
                                         @if (User.IsInRole("Waiter"))
                                         {
                                             <button ng-if="item.Status == 'Order'" ng-click="cancel(item.OrderItemID,detailorder.OrderID)" class="btn btn-danger btn-xs btn-block">Cancel</button>
